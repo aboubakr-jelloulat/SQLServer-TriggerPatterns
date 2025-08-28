@@ -1,0 +1,67 @@
+
+-- ============================================
+-- 📌 What is a Trigger in SQL?
+-- A trigger is like a hidden helper that runs
+-- automatically when something happens to a table
+-- (like INSERT, UPDATE, or DELETE).
+--
+-- Think of it like this:
+-- 🧸 Every time you add/remove a toy from your box,
+-- your mom automatically writes it down in her notebook.
+-- That automatic "note-taking" = TRIGGER.
+--
+-- ============================================
+-- 🎯 Why do we use Triggers?
+-- - To keep history logs (audit who changed what)
+-- - To stop people from deleting or changing important data
+-- - To enforce business rules automatically
+--
+-- ============================================
+-- ⚙️ How does it work?
+-- 1. You tell SQL: "When someone does X, do Y".
+-- 2. SQL remembers this rule.
+-- 3. When X happens (INSERT/UPDATE/DELETE),
+--    SQL runs Y automatically (the trigger fires).
+--
+-- ============================================
+-- 🧃 Example (Lemonade Stand)
+-- If someone adds a new sale to the Sales table,
+-- the trigger can automatically copy that row
+-- into a SalesHistory table.
+--
+-- Code example:
+-- CREATE TRIGGER trgAfterInsertSale
+-- ON Sales
+-- AFTER INSERT
+-- AS
+-- BEGIN
+--     INSERT INTO SalesHistory (SaleID, Amount, Date)
+--     SELECT SaleID, Amount, Date
+--     FROM inserted;
+-- END
+--
+-- This means:
+-- 👉 You add a sale ➝ SQL auto-saves it in history.
+--
+-- ============================================
+
+-- ============================================
+-- 📌 TYPES OF TRIGGERS IN SQL SERVER
+--
+-- 1) AFTER Trigger
+--    - Runs AFTER the action (INSERT/UPDATE/DELETE).
+--    - Example: After inserting a row, run extra logic.
+--
+-- 2) INSTEAD OF Trigger
+--    - Runs IN PLACE of the action.
+--    - Example: Try to DELETE → trigger runs instead,
+--      can block or replace the delete.
+--
+-- 3) Nested Triggers
+--    - When one trigger action causes another trigger
+--      to fire (chain reaction).
+--    - SQL Server allows up to 32 levels.
+--    - ⚠️ Can get messy, use carefully.
+--
+-- ============================================
+
